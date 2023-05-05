@@ -31,7 +31,6 @@ public class Main {
                             Encryption.setOutputFileName(console.next());
                             Encryption.setKey();
                             Encryption.encrypt();
-                            console.close();
                         } else {
                             System.out.println(TextExpressions.WRONG_CHOICE);
                         }

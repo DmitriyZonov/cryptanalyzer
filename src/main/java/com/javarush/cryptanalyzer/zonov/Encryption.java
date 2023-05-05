@@ -6,9 +6,7 @@ import java.util.Scanner;
 public class Encryption {
     private static int key;
     private static String inputFileName = "input.txt";
-    private static final String DEFAULT_INPUT_FILE_NAME = "input.txt";
     private static String outputFileName = "encoded.txt";
-    private static final String DEFAULT_OUTPUT_FILE_NAME = "encoded.txt";
 
     public static int getKey() {
         return key;
@@ -23,20 +21,20 @@ public class Encryption {
     }
 
     public static void setKey() {
-        Scanner console = new Scanner(System.in);
-        System.out.println(TextExpressions.GET_KEY);
-        int key;
-        boolean rightKey = false;
-        while(!(rightKey)) {
-            key = console.nextInt();
-            if (key >= 1 && key <= 84) {
-                rightKey = true;
-                Encryption.key = key;
-            } else {
-                System.out.println(TextExpressions.WRONG_KEY);
+        try(Scanner console = new Scanner(System.in)) {
+            System.out.println(TextExpressions.GET_KEY);
+            int key;
+            boolean rightKey = false;
+            while (!(rightKey)) {
+                key = console.nextInt();
+                if (key >= 1 && key <= 84) {
+                    rightKey = true;
+                    Encryption.key = key;
+                } else {
+                    System.out.println(TextExpressions.WRONG_KEY);
+                }
             }
         }
-        console.close();
     }
 
     public static void setInputFileName(String inputFileName) {
