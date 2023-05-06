@@ -6,9 +6,14 @@ public class TextExpressions {
     public static final String WRONG_MAIN_CHOICE = "Выбрано неверное число, пожалуйста, введите следующие числа: \n" + "\n" + MAIN_CHOICE;
     public static final String CHOICE_ENCRYPTION = "Нажмите 0 для выбора тестового файла для шифрования;\n" +
                                         "Нажмите 1 для указания собственных путей файлов для шифрования и получения результата;\n";
-    public static final String WRONG_CHOICE = "Выбрано неверное число, пожалуйста, введите следующие числа: \n" + "\n" + CHOICE_ENCRYPTION;
+    public static final String CHOICE_DECRYPTION = "Нажмите 0 для выбора тестового файла для расшифровки;\n" +
+                                        "Нажмите 1 для указания собственных путей файлов для расшифровки и получения результата;\n";
+    public static final String WRONG_ENCRYPTOR_CHOICE = "Выбрано неверное число, пожалуйста, введите следующие числа: \n" + "\n" + CHOICE_ENCRYPTION;
+    public static final String WRONG_DECRYPTOR_CHOICE = "Выбрано неверное число, пожалуйста, введите следующие числа: \n" + "\n" + CHOICE_DECRYPTION;
     public static final String GET_KEY = "Введите ключ шифрования. Это должно быть целое число от 1 до 84\n";
     public static final String WRONG_KEY = "Ключ шифрования неверен. Введите целое число от 1 до 84\n";
     public static final String GET_INPUT_FILE_PATH = "Введите путь для файла с текстом для шифрования\n";
     public static final String GET_OUTPUT_FILE_PATH = "Введите путь для файла для выгрузки результата шифрования\n";
+    public static final String SET_RANDOM_KEY = "Шифровка пройдет с ключом " + Encryptor.getKey();
+    public static final String SET_KEY_FOR_DECRYTION = "Введите полученный ключ для расшифровки";
 }

@@ -1,12 +1,16 @@
 package com.javarush.cryptanalyzer.zonov;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
 import java.util.Scanner;
 
-public class Encryption {
+public class Decryptor {
     private static int key;
-    private static String inputFileName = "input.txt";
-    private static String outputFileName = "encoded.txt";
+    private static String inputFileName = "encoded.txt";
+    private static String outputFileName = "output.txt";
 
     public static int getKey() {
         return key;
@@ -29,7 +33,7 @@ public class Encryption {
                 key = console.nextInt();
                 if (key >= 1 && key <= 84) {
                     rightKey = true;
-                    Encryption.key = key;
+                    Decryptor.key = key;
                 } else {
                     System.out.println(TextExpressions.WRONG_KEY);
                 }
@@ -37,18 +41,24 @@ public class Encryption {
         }
     }
 
+    public static void setRandomKey() {
+        Random random = new Random();
+        key = random.nextInt(85) + 1;
+        System.out.println(TextExpressions.SET_RANDOM_KEY);
+    }
+
     public static void setInputFileName(String inputFileName) {
-        Encryption.inputFileName = inputFileName;
+        Decryptor.inputFileName = inputFileName;
     }
 
     public static void setOutputFileName(String outputFileName) {
-        Encryption.outputFileName = outputFileName;
+        Decryptor.outputFileName = outputFileName;
     }
-    public static void encrypt() throws IOException {
+    public static void decrypt(int key) throws IOException {
 
-        try (FileReader reader = new FileReader(Encryption.inputFileName);
+        try (FileReader reader = new FileReader(Decryptor.inputFileName);
              BufferedReader buffer = new BufferedReader(reader);
-             FileWriter writer = new FileWriter(Encryption.outputFileName)) {
+             FileWriter writer = new FileWriter(Decryptor.outputFileName)) {
 
             char[] alphabet = CryptoAlphabet.getALPHABET().toCharArray();
 
@@ -59,21 +69,21 @@ public class Encryption {
                     for (int j = 0; j < alphabet.length; j++) {
                         int temp = 0;
                         if(charArray[i] == alphabet[j]) {
-                            if ((j + key) > alphabet.length - 1) {
-                                temp = key - (alphabet.length - j);
+                            if ((j - key) < 0) {
+                                temp = alphabet.length - (key - j);
                             } else {
-                                temp = j + key;
+                                temp = j - key;
                             }
                             charArray[i] = alphabet[temp];
                             break;
                         }
                     }
                 }
-                StringBuilder encoded = new StringBuilder();
+                StringBuilder decoded = new StringBuilder();
                 for(char c : charArray) {
-                    encoded.append(c);
+                    decoded.append(c);
                 }
-                writer.write(encoded.toString());
+                writer.write(decoded.toString());
             }
         }
     }
