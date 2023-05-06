@@ -50,13 +50,12 @@ public class Main {
                             Decryptor.setInputFileName(console.next());
                             System.out.println(TextExpressions.GET_OUTPUT_FILE_PATH);
                             Decryptor.setOutputFileName(console.next());
-                            System.out.println(TextExpressions.SET_KEY_FOR_DECRYTION);
-                            Decryptor.decrypt(console.nextInt());
+                            Decryptor.setKey();
+                            Decryptor.decrypt(Decryptor.getKey());
                         } else {
                             System.out.println(TextExpressions.WRONG_DECRYPTOR_CHOICE);
                         }
                     }
-
                 } else {
                     System.out.println(TextExpressions.WRONG_MAIN_CHOICE);
                 }

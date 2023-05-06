@@ -16,17 +16,10 @@ public class Decryptor {
         return key;
     }
 
-    public static String getInputFileName() {
-        return inputFileName;
-    }
-
-    public static String getOutputFileName() {
-        return outputFileName;
-    }
 
     public static void setKey() {
         try(Scanner console = new Scanner(System.in)) {
-            System.out.println(TextExpressions.GET_KEY);
+            System.out.println(TextExpressions.SET_KEY_FOR_DECRYPTION);
             int key;
             boolean rightKey = false;
             while (!(rightKey)) {

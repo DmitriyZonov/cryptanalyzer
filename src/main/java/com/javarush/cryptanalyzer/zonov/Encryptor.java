@@ -13,14 +13,6 @@ public class Encryptor {
         return key;
     }
 
-    public static String getInputFileName() {
-        return inputFileName;
-    }
-
-    public static String getOutputFileName() {
-        return outputFileName;
-    }
-
     public static void setKey() {
         try(Scanner console = new Scanner(System.in)) {
             System.out.println(TextExpressions.GET_KEY);

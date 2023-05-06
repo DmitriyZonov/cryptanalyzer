@@ -15,5 +15,5 @@ public class TextExpressions {
     public static final String GET_INPUT_FILE_PATH = "Введите путь для файла с текстом для шифрования\n";
     public static final String GET_OUTPUT_FILE_PATH = "Введите путь для файла для выгрузки результата шифрования\n";
     public static final String SET_RANDOM_KEY = "Шифровка пройдет с ключом " + Encryptor.getKey();
-    public static final String SET_KEY_FOR_DECRYTION = "Введите полученный ключ для расшифровки";
+    public static final String SET_KEY_FOR_DECRYPTION = "Введите ключ для расшифровки. Целое число от 1 до 84\n";
 }
