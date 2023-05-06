@@ -50,8 +50,21 @@ public class Main {
                             Decryptor.setInputFileName(console.next());
                             System.out.println(TextExpressions.GET_OUTPUT_FILE_PATH);
                             Decryptor.setOutputFileName(console.next());
-                            Decryptor.setKey();
-                            Decryptor.decrypt(Decryptor.getKey());
+                            boolean rightChoiceOnKeyPresence = false;
+                            while (!(rightChoiceOnKeyPresence)) {
+                                System.out.println(TextExpressions.PRESENCE_OF_KEY);
+                                int keyAnswer = console.nextInt();
+                                if (keyAnswer == 0) {
+                                    rightChoiceOnKeyPresence = true;
+                                    Decryptor.setKey();
+                                    Decryptor.decrypt(Decryptor.getKey());
+                                } else if (keyAnswer == 1) {
+                                    rightChoiceOnKeyPresence = true;
+
+                                } else {
+                                    System.out.println(TextExpressions.WRONG_KEY_PRESENCE_ANSWER);
+                                }
+                            }
                         } else {
                             System.out.println(TextExpressions.WRONG_DECRYPTOR_CHOICE);
                         }

@@ -34,12 +34,6 @@ public class Decryptor {
         }
     }
 
-    public static void setRandomKey() {
-        Random random = new Random();
-        key = random.nextInt(85) + 1;
-        System.out.println(TextExpressions.SET_RANDOM_KEY);
-    }
-
     public static void setInputFileName(String inputFileName) {
         Decryptor.inputFileName = inputFileName;
     }

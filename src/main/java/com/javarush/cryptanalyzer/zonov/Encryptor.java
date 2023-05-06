@@ -73,6 +73,7 @@ public class Encryptor {
                     encoded.append(c);
                 }
                 writer.write(encoded.toString());
+                writer.write("\n");
             }
         }
     }

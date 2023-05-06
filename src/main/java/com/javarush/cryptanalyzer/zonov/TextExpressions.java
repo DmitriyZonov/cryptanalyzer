@@ -16,4 +16,7 @@ public class TextExpressions {
     public static final String GET_OUTPUT_FILE_PATH = "Введите путь для файла для выгрузки результата шифрования\n";
     public static final String SET_RANDOM_KEY = "Шифровка пройдет с ключом " + Encryptor.getKey();
     public static final String SET_KEY_FOR_DECRYPTION = "Введите ключ для расшифровки. Целое число от 1 до 84\n";
+    public static final  String PRESENCE_OF_KEY = "Вам известен ключ шифровки?\n" +
+            "Нажмите 1, если известен\n" + "Нажмите 0, если не известен\n";
+    public static final String WRONG_KEY_PRESENCE_ANSWER = "Выбрано неверное число, пожалуйста, введите следующие числа: \n" + "\n" + PRESENCE_OF_KEY;
 }
