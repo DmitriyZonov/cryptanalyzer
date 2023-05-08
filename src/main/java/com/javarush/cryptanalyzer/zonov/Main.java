@@ -1,78 +1,19 @@
 package com.javarush.cryptanalyzer.zonov;
 
-import java.io.*;
-import java.util.Scanner;
+import com.javarush.cryptanalyzer.zonov.app.Application;
+import com.javarush.cryptanalyzer.zonov.controller.MainController;
+import com.javarush.cryptanalyzer.zonov.entity.Result;
+import com.javarush.cryptanalyzer.zonov.view.ConsoleView;
+import com.javarush.cryptanalyzer.zonov.view.View;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        System.out.println(TextExpressions.GREETING);
-        try (Scanner console = new Scanner(System.in)) {
-            System.out.println(TextExpressions.MAIN_CHOICE);
-            boolean rightMainChoice = false;
-            while (!(rightMainChoice)) {
-                int mainAnswer = console.nextInt();
-                if (mainAnswer == 0) {
-                    rightMainChoice = true;
-                    System.out.println(TextExpressions.CHOICE_ENCRYPTION);
-                    boolean rightChoiceOfEncryptionMode = false;
-                    while (!(rightChoiceOfEncryptionMode)) {
-                        int answer = console.nextInt();
-                        if (answer == 0) {
-                            rightChoiceOfEncryptionMode = true;
-                            Encryptor.setRandomKey();
-                            Encryptor.encrypt();
-                        } else if (answer == 1) {
-                            rightChoiceOfEncryptionMode = true;
-                            System.out.println(TextExpressions.GET_INPUT_FILE_PATH);
-                            Encryptor.setInputFileName(console.next());
-                            System.out.println(TextExpressions.GET_OUTPUT_FILE_PATH);
-                            Encryptor.setOutputFileName(console.next());
-                            Encryptor.setKey();
-                            Encryptor.encrypt();
-                        } else {
-                            System.out.println(TextExpressions.WRONG_ENCRYPTOR_CHOICE);
-                        }
-                    }
-                } else if (mainAnswer == 1) {
-                    rightMainChoice = true;
-                    System.out.println(TextExpressions.CHOICE_DECRYPTION);
-                    boolean rightChoiceDecryption = false;
-                    while(!(rightChoiceDecryption)) {
-                        int answer = console.nextInt();
-                        if (answer == 0) {
-                            rightChoiceDecryption = true;
-                            Encryptor.setRandomKey();
-                            Encryptor.encrypt();
-                            Decryptor.decrypt(Encryptor.getKey());
-                        } else if (answer == 1) {
-                            rightChoiceDecryption = true;
-                            System.out.println(TextExpressions.GET_INPUT_FILE_PATH);
-                            Decryptor.setInputFileName(console.next());
-                            System.out.println(TextExpressions.GET_OUTPUT_FILE_PATH);
-                            Decryptor.setOutputFileName(console.next());
-                            boolean rightChoiceOnKeyPresence = false;
-                            while (!(rightChoiceOnKeyPresence)) {
-                                System.out.println(TextExpressions.PRESENCE_OF_KEY);
-                                int keyAnswer = console.nextInt();
-                                if (keyAnswer == 0) {
-                                    rightChoiceOnKeyPresence = true;
-                                    Decryptor.setKey();
-                                    Decryptor.decrypt(Decryptor.getKey());
-                                } else if (keyAnswer == 1) {
-                                    rightChoiceOnKeyPresence = true;
+    public static void main(String[] args) {
 
-                                } else {
-                                    System.out.println(TextExpressions.WRONG_KEY_PRESENCE_ANSWER);
-                                }
-                            }
-                        } else {
-                            System.out.println(TextExpressions.WRONG_DECRYPTOR_CHOICE);
-                        }
-                    }
-                } else {
-                    System.out.println(TextExpressions.WRONG_MAIN_CHOICE);
-                }
-            }
-        }
+        View view = new ConsoleView();
+        MainController mainController = new MainController(view);
+        Application application = new Application(mainController);
+
+        Result result = application.run();
+        application.printResult(result);
     }
 }
