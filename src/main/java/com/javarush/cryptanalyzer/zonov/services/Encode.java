@@ -14,7 +14,7 @@ public class Encode implements Function{
         try {
             encode(Integer.parseInt(parameters[1]), parameters[2], parameters[3]);
         } catch (Exception e) {
-            return new Result(ResultCode.ERROR, new ApplicationException("Операция расшифровки методом \"Брут форс\" завершилась с ошибкой", e));
+            return new Result(ResultCode.ERROR, new ApplicationException("Операция шифрования завершилась с ошибкой", e));
         }
         return new Result(ResultCode.OK);
     }
