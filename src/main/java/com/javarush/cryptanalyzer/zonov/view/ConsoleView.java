@@ -49,8 +49,8 @@ public class ConsoleView implements View {
                 System.out.println(ConsoleViewConstants.FILE_PATH_PRESENCE_ENCODE);
                 parameters[2] = console.nextLine();
                 if (parameters[2].equals("")) {
-                    parameters[2] = "input.txt";
-                    parameters[3] = "encoded.txt";
+                    parameters[2] = ConsoleViewConstants.INPUT;
+                    parameters[3] = ConsoleViewConstants.ENCODED;
                 } else {
                     parameters[3] = console.next();
                 }
@@ -58,8 +58,8 @@ public class ConsoleView implements View {
                 System.out.println(ConsoleViewConstants.FILE_PATH_PRESENCE_DECODE);
                 parameters[2] = console.nextLine();
                 if (parameters[2].equals("")) {
-                    parameters[2] = "encoded.txt";
-                    parameters[3] = "output.txt";
+                    parameters[2] = ConsoleViewConstants.ENCODED;
+                    parameters[3] = ConsoleViewConstants.OUTPUT;
                 } else {
                     parameters[3] = console.nextLine();
                 }

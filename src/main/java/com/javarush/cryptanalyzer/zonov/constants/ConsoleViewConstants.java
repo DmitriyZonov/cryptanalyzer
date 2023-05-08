@@ -2,6 +2,9 @@ package com.javarush.cryptanalyzer.zonov.constants;
 
 public class ConsoleViewConstants {
     public static final String NEW_LINE = "\n";
+    public static final String INPUT = "input.txt";
+    public static final String OUTPUT = "output.txt";
+    public static final String ENCODED = "encoded.txt";
     public static final String GREETING = "Добро пожаловать в программу по шифрованию текста \"Цезарь и Брут\"" + NEW_LINE;
     public static final String CHOOSE_FUNCTION = """
             Выберите режим работы:
