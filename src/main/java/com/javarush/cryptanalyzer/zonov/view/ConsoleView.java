@@ -13,7 +13,7 @@ import static com.javarush.cryptanalyzer.zonov.constants.ApplicationCompletionCo
 public class ConsoleView implements View {
     @Override
     public String[] getParameters() {
-        String[] parameters = new String[4];
+        String[] parameters = new String[6];
         System.out.println(ConsoleViewConstants.GREETING);
         try (Scanner console = new Scanner(System.in)) {
             System.out.println(ConsoleViewConstants.CHOOSE_FUNCTION);
@@ -22,6 +22,7 @@ public class ConsoleView implements View {
                 case "1" -> System.out.println(ConsoleViewConstants.ENCODING_CHOICE);
                 case "2" -> System.out.println(ConsoleViewConstants.DECODING_CHOICE);
                 case "3" -> System.out.println(ConsoleViewConstants.BRUTE_FORCE_CHOICE);
+                case "4" -> System.out.println(ConsoleViewConstants.STATISTICAL_ANALYSIS_CHOICE);
                 default -> System.out.println(ConsoleViewConstants.UNSUPPORTED_FUNCTION_CHOICE);
             }
             if (parameters[0].equals("1") || parameters[0].equals("2")) {
@@ -46,12 +47,19 @@ public class ConsoleView implements View {
                 }
             }
             if (parameters[0].equals("1")) {
-                System.out.println(ConsoleViewConstants.FILE_PATH_PRESENCE_ENCODE);
+                System.out.println(ConsoleViewConstants.INPUT_FILE_PATH_PRESENCE_ENCODE);
                 parameters[2] = console.nextLine();
+                System.out.println(ConsoleViewConstants.ENCODING_FOR_STATISTICAL_ANALYSIS);
+                parameters[4] = console.nextLine();
+                if (parameters[4].equals("")) {
+                    parameters[4] = "0";
+                }
                 if (parameters[2].equals("")) {
                     parameters[2] = ConsoleViewConstants.INPUT;
                     parameters[3] = ConsoleViewConstants.ENCODED;
+                    System.out.println();
                 } else {
+                    System.out.println(ConsoleViewConstants.OUTPUT_FILE_PATH_PRESENCE_ENCODE);
                     parameters[3] = console.next();
                 }
             } else if (parameters[0].equals("2") || parameters[0].equals("3")) {
@@ -62,6 +70,17 @@ public class ConsoleView implements View {
                     parameters[3] = ConsoleViewConstants.OUTPUT;
                 } else {
                     parameters[3] = console.nextLine();
+                }
+            } else if (parameters[0].equals("4")) {
+                System.out.println(ConsoleViewConstants.FILE_PATH_PRESENCE_STATISTICAL_ANALYSIS_DECODE);
+                parameters[2] = console.nextLine();
+                if (parameters[2].equals("")) {
+                    parameters[2] = ConsoleViewConstants.ENCODED;
+                    parameters[3] = ConsoleViewConstants.OUTPUT;
+                    parameters[5] = ConsoleViewConstants.DICTIONARY;
+                } else {
+                    parameters[3] = console.nextLine();
+                    parameters[5] = console.nextLine();
                 }
             }
         }

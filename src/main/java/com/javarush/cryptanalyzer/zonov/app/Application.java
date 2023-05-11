@@ -25,6 +25,7 @@ public class Application {
             case "1" -> FunctionCode.valueOf(ENCODE).getFunction();
             case "2" -> FunctionCode.valueOf(DECODE).getFunction();
             case "3" -> FunctionCode.valueOf(BRUTE_FORCE).getFunction();
+            case "4" -> FunctionCode.valueOf(STATISTICAL_ANALYSIS).getFunction();
             default -> FunctionCode.valueOf(UNSUPPORTED_FUNCTION).getFunction();
         };
     }

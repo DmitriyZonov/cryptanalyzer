@@ -12,14 +12,14 @@ public class Encode implements Function{
     @Override
     public Result execute(String[] parameters) {
         try {
-            encode(Integer.parseInt(parameters[1]), parameters[2], parameters[3]);
+            encode(Integer.parseInt(parameters[1]), parameters[2], parameters[3], Integer.parseInt(parameters[4]));
         } catch (Exception e) {
             return new Result(ResultCode.ERROR, new ApplicationException("Операция шифрования завершилась с ошибкой", e));
         }
         return new Result(ResultCode.OK);
     }
 
-    private void encode(int key, String inputFileName, String outputFileName) throws IOException {
+    private void encode(int key, String inputFileName, String outputFileName, int statisticalAnalysisParameter) throws IOException {
 
         try (FileReader reader = new FileReader(inputFileName);
              BufferedReader buffer = new BufferedReader(reader);
@@ -28,7 +28,12 @@ public class Encode implements Function{
             char[] alphabet = CryptoAlphabet.getALPHABET().toCharArray();
 
             while (buffer.ready()) {
-                char[] charArray = buffer.readLine().toCharArray();
+                char[] charArray;
+                if (statisticalAnalysisParameter == 0) {
+                    charArray = buffer.readLine().toCharArray();
+                } else {
+                    charArray = buffer.readLine().toLowerCase().toCharArray();
+                }
                 for (int i = 0; i < charArray.length; i++) {
                     for (int j = 0; j < alphabet.length; j++) {
                         int temp;
