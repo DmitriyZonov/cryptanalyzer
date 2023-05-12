@@ -3,9 +3,14 @@ package com.javarush.cryptanalyzer.zonov.app;
 import com.javarush.cryptanalyzer.zonov.controller.MainController;
 import com.javarush.cryptanalyzer.zonov.entity.Result;
 import com.javarush.cryptanalyzer.zonov.repository.FunctionCode;
+import com.javarush.cryptanalyzer.zonov.repository.ResultCode;
 import com.javarush.cryptanalyzer.zonov.services.Function;
+import com.javarush.cryptanalyzer.zonov.services.StatisticalAnalysis;
+
+import java.io.IOException;
 
 import static com.javarush.cryptanalyzer.zonov.constants.FunctionCodeConstants.*;
+import static com.javarush.cryptanalyzer.zonov.repository.ResultCode.SYMBOL_CHANGE;
 
 public class Application {
     private final MainController mainController;
@@ -19,6 +24,15 @@ public class Application {
         Function function = getFunction(mode);
         return function.execute(parameters);
     }
+    public Result runSymbolChange() throws IOException {
+        while (true) {
+            String[] symbols = mainController.getView().getSymbols();
+            if (symbols[0].equals("")) {
+                return new Result(ResultCode.OK);
+            }
+         new StatisticalAnalysis().executeSymbolChange(symbols);
+        }
+    }
 
     private Function getFunction(String mode) {
         return switch (mode) {
@@ -31,6 +45,14 @@ public class Application {
     }
 
     public void printResult(Result result) {
+        if(result.getResultCode() == SYMBOL_CHANGE) {
+            try {
+                Result resultOfSymbolChanging = runSymbolChange();
+                mainController.getView().printResult(resultOfSymbolChanging);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         mainController.getView().printResult(result);
     }
 }

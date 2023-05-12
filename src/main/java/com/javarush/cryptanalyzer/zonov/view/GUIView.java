@@ -9,6 +9,11 @@ public class GUIView implements View {
     }
 
     @Override
+    public String[] getSymbols() {
+        return new String[0];
+    }
+
+    @Override
     public void printResult(Result result) {
 
     }
