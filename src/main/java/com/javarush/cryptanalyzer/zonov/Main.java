@@ -4,6 +4,7 @@ import com.javarush.cryptanalyzer.zonov.app.Application;
 import com.javarush.cryptanalyzer.zonov.controller.MainController;
 import com.javarush.cryptanalyzer.zonov.entity.Result;
 import com.javarush.cryptanalyzer.zonov.view.ConsoleView;
+import com.javarush.cryptanalyzer.zonov.view.GUIView;
 import com.javarush.cryptanalyzer.zonov.view.View;
 
 public class Main {

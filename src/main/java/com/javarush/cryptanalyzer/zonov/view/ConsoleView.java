@@ -2,6 +2,7 @@ package com.javarush.cryptanalyzer.zonov.view;
 
 import com.javarush.cryptanalyzer.zonov.constants.ConsoleViewConstants;
 import com.javarush.cryptanalyzer.zonov.entity.Result;
+import com.javarush.cryptanalyzer.zonov.services.BruteForce;
 import com.javarush.cryptanalyzer.zonov.services.KeyChecker;
 import com.javarush.cryptanalyzer.zonov.services.KeyGenerator;
 
@@ -17,7 +18,7 @@ public class ConsoleView implements View {
 
     @Override
     public String[] getParameters() {
-        String[] parameters = new String[8];
+        String[] parameters = new String[6];
         Scanner console = new Scanner(System.in);
         System.out.println(GREETING);
             System.out.println(CHOOSE_FUNCTION);
@@ -106,6 +107,7 @@ public class ConsoleView implements View {
     public void printResult(Result result) {
         switch (result.getResultCode()) {
             case OK -> System.out.println(SUCCESS);
+            case BRUTE_FORCE_COMPLETE -> System.out.println(BRUTE_FORCE_SUCCESS + BruteForce.getKey());
             case ERROR -> System.out.println(EXCEPTION + result.getApplicationException().getMessage());
         }
     }

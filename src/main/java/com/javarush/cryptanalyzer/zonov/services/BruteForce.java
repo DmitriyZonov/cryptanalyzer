@@ -11,14 +11,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class BruteForce implements Function {
+    private static int key;
     @Override
     public Result execute(String[] parameters) {
         try {
-            bruteForce(parameters[2], parameters[3]);
+           bruteForce(parameters[2], parameters[3]);
         } catch (Exception e) {
             return new Result(ResultCode.ERROR, new ApplicationException("Операция расшифровки методом \"Брут форс\" завершилась с ошибкой", e));
         }
-        return new Result(ResultCode.OK);
+        return new Result(ResultCode.BRUTE_FORCE_COMPLETE);
     }
     private void bruteForce(String inputFileName, String outputFileName) throws IOException {
 
@@ -27,10 +28,11 @@ public class BruteForce implements Function {
         for (int i = 1; i < alphabetLength; i++) {
             StringBuilder decoded = decode(i, inputFileName);
 
-            if (decoded.indexOf(", ") > 0 || decoded.indexOf(", а ") > 0 ||
-                    decoded.indexOf(". ") > 0 || decoded. indexOf(" в ") > 0) {
+            if (decoded.indexOf(" я ") > 0 && decoded.indexOf(", а ") > 0 &&
+                    decoded.indexOf(" как ") > 0 && decoded.indexOf(" в ") > 0) {
                 try (FileWriter writer = new FileWriter(getNewFileName(outputFileName, fileNumber))) {
                     writer.write(String.valueOf(decoded));
+                    key = i;
                     fileNumber++;
                 }
             }
@@ -71,6 +73,9 @@ public class BruteForce implements Function {
         return decodedText;
     }
 
+    public static int getKey() {
+        return key;
+    }
 
     private String getNewFileName(String oldFileName, int number) {
         if (number > 0) {

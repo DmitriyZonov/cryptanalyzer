@@ -10,6 +10,7 @@ import com.javarush.cryptanalyzer.zonov.services.StatisticalAnalysis;
 import java.io.IOException;
 
 import static com.javarush.cryptanalyzer.zonov.constants.FunctionCodeConstants.*;
+import static com.javarush.cryptanalyzer.zonov.repository.ResultCode.BRUTE_FORCE_COMPLETE;
 import static com.javarush.cryptanalyzer.zonov.repository.ResultCode.SYMBOL_CHANGE;
 
 public class Application {
@@ -45,14 +46,17 @@ public class Application {
     }
 
     public void printResult(Result result) {
-        if(result.getResultCode() == SYMBOL_CHANGE) {
+        if (result.getResultCode() == SYMBOL_CHANGE) {
             try {
                 Result resultOfSymbolChanging = runSymbolChange();
                 mainController.getView().printResult(resultOfSymbolChanging);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        } else if (result.getResultCode() == BRUTE_FORCE_COMPLETE) {
+            mainController.getView().printResult(result);
+        } else {
+            mainController.getView().printResult(result);
         }
-        mainController.getView().printResult(result);
     }
 }
