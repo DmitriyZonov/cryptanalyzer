@@ -28,7 +28,7 @@ public class BruteForce implements Function {
         for (int i = 1; i < alphabetLength; i++) {
             StringBuilder decoded = decode(i, inputFileName);
 
-            if (decoded.indexOf(" я ") > 0 && decoded.indexOf(", а ") > 0 &&
+            if (decoded.indexOf(". ") > 0 && decoded.indexOf(" на ") > 0 &&
                     decoded.indexOf(" как ") > 0 && decoded.indexOf(" в ") > 0) {
                 try (FileWriter writer = new FileWriter(getNewFileName(outputFileName, fileNumber))) {
                     writer.write(String.valueOf(decoded));
